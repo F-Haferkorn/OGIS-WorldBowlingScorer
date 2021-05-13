@@ -3,7 +3,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
-#include "bowlframescore.h"
+#include <ogis/wbscorer/bowlframescore.h>
 
 BowlFrameScore::BowlFrameScore(bool isLlastFrame, QWidget* parent)
   : QWidget(parent)

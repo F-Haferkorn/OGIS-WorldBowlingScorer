@@ -3,7 +3,7 @@
 #include <QFrame>
 #include <QHBoxLayout>
 
-#include "bowlplayerscore.h"
+#include <ogis/wbscorer/bowlplayerscore.h>
 
 BowlPlayerScore::BowlPlayerScore(QWidget* parent)
   : QWidget(parent)

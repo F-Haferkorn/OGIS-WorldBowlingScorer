@@ -1,27 +1,11 @@
-cmake_minimum_required(VERSION 3.11)
+add_executable(WorldBowlingScorer
+    WIN32
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 
-project(WorldBowlingScorer LANGUAGES CXX)
+target_include_directories(WorldBowlingScorer
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../LibWorldBowlingScorer/include)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
-
-add_executable(WorldBowlingScorer WIN32
-  main.cpp
-  bowlscorermainwindow.cpp
-  bowlscorermainwindow.h
-  bowlscorermainwindow.ui
-  bowlscorer.h bowlscorer.cpp
-  bowlplayerscore.h   bowlplayerscore.cpp
-  bowlframescore.h  bowlframescore.cpp
-)
+target_link_libraries(WorldBowlingScorer
+    PRIVATE libWorldBowlingScorer Qt5::Widgets Qt::Gui Qt5::Core)
 
 
-target_link_libraries(WorldBowlingScorer PRIVATE Qt5::Widgets Qt5::Core)

@@ -5,8 +5,7 @@
 #include <QWidget>
 #include <Qlist>
 
-class BowlFrameScore : public QWidget
-{
+class BowlFrameScore : public QWidget {
   Q_OBJECT
 public:
   // all members are linked using the Qt-Parent mechanism
@@ -14,9 +13,9 @@ public:
   // except UI
 
   ~BowlFrameScore() = default;
-  explicit BowlFrameScore(bool isLlastFrame, QWidget* parent);
+  explicit BowlFrameScore(bool isLlastFrame, QWidget *parent);
 
-  QFrame* widgetFrame();
+  QFrame *widgetFrame();
 
   void clear();
 
@@ -31,8 +30,7 @@ public:
 
   int noThrows() { return m_thrownPinValue.size(); }
   int score() { return m_score + m_extra; }
-  int totalScore()
-  {
+  int totalScore() {
     /// do NOT forward own score frame's score is not be rendered.
     /// and will not appear on total score and on result score of class
     /// BowlPlayerScore
@@ -52,7 +50,7 @@ public:
 private: /// Methods
   void markStrike(bool hasStrike) { m_hasStrike = hasStrike; }
   void markSpare(bool hasSpare) { m_hasSpare = hasSpare; }
-  QLabel* throwLabel(int index);
+  QLabel *throwLabel(int index);
 
 private: // CONSTANTS
   const int c_maxCountOfRolls;
@@ -60,10 +58,10 @@ private: // CONSTANTS
 
 private: /// VARIABLES
   QList<int> m_thrownPinValue;
-  QLabel* m_scoreLabel = nullptr;
+  QLabel *m_scoreLabel = nullptr;
 
-  QList<QLabel*> m_throwLabels;
-  QLabel* m_lastThrowLabel = nullptr;
+  QList<QLabel *> m_throwLabels;
+  QLabel *m_lastThrowLabel = nullptr;
 
   const int c_strikeBonus = 10;
 
@@ -78,4 +76,4 @@ private: /// VARIABLES
   bool m_skipRendering = false;
 };
 
-Q_DECLARE_TYPEINFO(BowlFrameScore*, Q_PRIMITIVE_TYPE);
+Q_DECLARE_TYPEINFO(BowlFrameScore *, Q_PRIMITIVE_TYPE);

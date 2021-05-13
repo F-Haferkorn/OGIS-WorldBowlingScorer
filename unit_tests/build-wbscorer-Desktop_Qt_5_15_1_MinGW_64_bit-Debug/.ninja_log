@@ -1,0 +1,5 @@
+# ninja log v5
+11	1970	6426131749664784	scorer_autogen/timestamp	f63c57a78946ed3a
+1970	2068	6426131750674473	CMakeFiles/scorer.dir/scorer_autogen/mocs_compilation.cpp.obj	45c0842ca67ccbd8
+1973	5967	6426131789652035	CMakeFiles/scorer.dir/tst_scorer.cpp.obj	bbf15abafc8d5d08
+5975	6562	6426131795482934	scorer.exe	7290e899d82bc538
