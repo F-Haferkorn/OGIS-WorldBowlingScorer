@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>855</x>
+      <y>387</y>
+      <w>270</w>
+      <h>432</h>
+    </coordinates>
+    <panel_attributes>BowlFrameScore
+--
+
+- m_rolledPins :array&lt;int noPins ;
+
+- m_isLlastScoreItem 
+--
+BowlScoreItemm(last: bool)
+thrownCountOfPins(int pinsThrown);
+
+hasStrike() 
+hasSpare()      
+
+score() : int 
+totalScore() : int
+setExtra(extra : int) 
+extraScore() : int
+setPreviousScore(previousScore: int)
+
+cumulateThrownPins() : int 
+firstItemPin(): int 
+isLastFrame()  : bool 
+isFrameClosed() : bool 
+
+renderScore()
+setSkipRendering(bool skipIt) 
+
+- markStrike(bool hasStrike) 
+- markSpare(bool hasSpare) 
+- throwLabel(int index) : QLabel *
+ 
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>513</y>
+      <w>153</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m_frameScores
+m2=10
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>423</x>
+      <y>441</y>
+      <w>306</w>
+      <h>378</h>
+    </coordinates>
+    <panel_attributes>BowlPlayerScore
+--
+m_currentFrameIndex : int 
+
+--
+
+thownCountOfPins(int): bool
+frameId() : int
+setFrameId(frameId : int) 
+resultScore() : int
+
+frameScore(index : int ) : BowlFrameScore*
+currentFrameScore() : BowlFrameScore*
+previusFrameScore() : BowlFrameScore*
+
+- createResultWidget()
+- updateAllFrameScores() 
+- findfirstTrailingStrikeInARow(lastStrike: int ) : int
+- treatRowOfStrikes(BowlFrameScore *, int ,int )
+- activateNextFrameScore()
+
+**slots:**
+
+clear()
+activateCurrentFrame
+markResult()
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>585</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m_resultLabel
+m2=1
+
+</panel_attributes>
+    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>549</x>
+      <y>369</y>
+      <w>81</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m_players
+
+m1=1
+m2=1..N
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>423</x>
+      <y>126</y>
+      <w>306</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>BowlScorer
+--
+m_selectedPlayerIndex :int
+m_activePlayer : BowlPlayerScore*
+
+--
+noPlayers() : int 
+hasGameEnded() : bool
+- init()
+
+
+**slots:**
+hrowPins( noPis: int) : int 
+activat*eNextPlayer()
+
+markWinner()
+addPlayer()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>549</y>
+      <w>207</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>QFrame -&gt; QLabel
+--
+
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>126</y>
+      <w>216</w>
+      <h>378</h>
+    </coordinates>
+    <panel_attributes>BowlingScorerMainWindow
+--
+- m_toolBar : QToolbar*
+- m_bowlScorer : BowlScorer*
+- init();
+
+--
+- enabletoolbar(int)
+
+**slots:**
+gameEnds()
+restartGame();
+resetGame();
+
+throwPins(int noPins);
+throwFault()
+throw0()
+throw1()
+throw2()
+throw3()
+throw4()
+throw5()
+throw6()
+throw7()
+throw8()
+throw9()
+throw10()
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>279</x>
+      <y>135</y>
+      <w>153</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m_bowlScorer
+m2=1
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>882</x>
+      <y>45</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>QMainWindow
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>972</x>
+      <y>81</y>
+      <w>27</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>567</x>
+      <y>54</y>
+      <w>333</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>350.0;10.0;10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>36</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>QWidget
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>162</x>
+      <y>72</y>
+      <w>27</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+</diagram>

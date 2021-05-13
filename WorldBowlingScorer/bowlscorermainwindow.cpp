@@ -95,7 +95,7 @@ void BowlScorerMainWindow::enableToolBar(int allowedCountOfPins)
 
     startIndex++;
     enable(action, 0, allowedCountOfPins);   // Fault
-    for(int index =0; index < actions.size()-startIndex; index++ )          // values 0..10faddactoio
+    for(int index =0; index < actions.size()-startIndex; index++ )          // values 0..10 of add-action
     {
         enable( actions.at(index+startIndex), index, allowedCountOfPins);
     }

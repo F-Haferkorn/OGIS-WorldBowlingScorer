@@ -16,7 +16,7 @@ class BowlScorerMainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    // all menbers are linked using the Qt-Parent mechanism
+    // all members are linked using the Qt-Parent mechanism
     // and are resolved at deletion
     // except
     ~BowlScorerMainWindow();
