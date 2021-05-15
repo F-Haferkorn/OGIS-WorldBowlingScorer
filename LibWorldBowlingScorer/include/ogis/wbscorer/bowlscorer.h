@@ -10,7 +10,7 @@ class BowlScorer : public QWidget {
 public:
   // all members are linked using the Qt-Parent mechanism
   // and are resolved at deletion
-  virtual ~BowlScorer() = default;
+  ~BowlScorer() = default;
   explicit BowlScorer(int countOfPlayers, QWidget *parent);
 
   int noPlayers() { return m_playersScores.size(); }

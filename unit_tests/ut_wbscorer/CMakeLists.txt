@@ -3,9 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 
 find_package(Qt5 COMPONENTS Core Gui Test REQUIRED)
 
-#set(CMAKE_AUTOMOC ON)
-
-enable_testing()
+set(CMAKE_AUTOMOC ON)
 
 add_executable(ut_scorer testbowlscorer.h testbowlscorer.cpp)
 add_test(NAME ut COMMAND ut_scorer)
