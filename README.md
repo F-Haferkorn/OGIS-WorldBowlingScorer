@@ -1,5 +1,5 @@
 # WorlBowlingScorer
-Scorer Appplication for WorldBowling 
+Scorer Appplication for Sportive Disipline "World-Bowling"
  
 ## Detailed View ##
  
