@@ -1,3 +1,5 @@
+#include <loop>
+
 #include <QtTest>
 
 #include "testbowlscorer.h"
@@ -30,6 +32,7 @@ private slots:
   void test_case_12_strikes__resultScoreOf_300();
 
 private:
+  BowlPlayerScore *scorer = nullptr;
   int m_allowedCountOfPins = 10;
   bool m_gameHasEnded = false;
 };
@@ -38,6 +41,8 @@ TestBowlScorer::~TestBowlScorer() {}
 void TestBowlScorer::initTestCase() {
   m_gameHasEnded = false;
   m_allowedCountOfPins = 10;
+  scorer = BowlScorer::playerScore(0);
+  QVERIFY(scorer != nullptr);
 }
 
 void TestBowlScorer::cleanupTestCase() {}
@@ -60,19 +65,20 @@ void TestBowlScorer::throwPins(int noPins) {
 }
 
 void TestBowlScorer::test_case_10_strikes__resultScoreOf_240() {
-  for (int i = 0; i < 10; i++)
-    BowlScorer::throwPins(10);
-  auto *scorer = BowlScorer::playerScore(0);
-  QVERIFY(scorer != nullptr);
+  // for (int i = 0; i < 12; i++)
+  //   BowlScorer::throwPins(10);
+  initTestCase();
+  loop(10) BowlScorer::throwPins(10);
   QVERIFY2(scorer->resultScore() == 240,
            "10 strikes in a row MUST give a total score of 240!");
 }
 
 void TestBowlScorer::test_case_12_strikes__resultScoreOf_300() {
-  for (int i = 0; i < 12; i++)
-    BowlScorer::throwPins(10);
-  auto *scorer = BowlScorer::playerScore(0);
-  QVERIFY(scorer != nullptr);
+  /// for (int i = 0; i < 12; i++)
+    ///  BowlScorer::throwPins(10);
+  ///
+  initTestCase();
+  loop(10) BowlScorer::throwPins(10);
   QVERIFY2(scorer->resultScore() == 300,
            "12 strikes in a row MUST give a total score of 300!");
 }

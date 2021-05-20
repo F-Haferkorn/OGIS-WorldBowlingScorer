@@ -1,3 +1,5 @@
+#include <loop>
+
 #include <QColor>
 #include <QFont>
 #include <QFrame>
@@ -5,20 +7,19 @@
 
 #include <ogis/wbscorer/bowlplayerscore.h>
 
-BowlPlayerScore::BowlPlayerScore(QWidget* parent)
-  : QWidget(parent)
-{
+BowlPlayerScore::BowlPlayerScore(QWidget *parent) : QWidget(parent) {
 
   // auto sizePolicy=QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
   auto sizePolicy = QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
   setSizePolicy(sizePolicy);
 
-  QHBoxLayout* layout = new QHBoxLayout();
+  QHBoxLayout *layout = new QHBoxLayout();
 
   int index = 0;
-  for (; index < c_maxItemCount - 1; index++) {
-    m_frameScores.push_back(new BowlFrameScore(false, this));
-  }
+  // for (; index < c_maxItemCount - 1; index++) {
+  loop(c_maxItemCount - 1)
+      m_frameScores.push_back(new BowlFrameScore(false, this));
+
   m_frameScores.push_back(new BowlFrameScore(true, this));
 
   layout->setContentsMargins(0, 0, 0, 0);
@@ -44,18 +45,15 @@ BowlPlayerScore::BowlPlayerScore(QWidget* parent)
   m_activeFrameLineWidth = 3 * m_regularFrameLineWidth;
 }
 
-void
-BowlPlayerScore::clear()
-{
-  for (auto* item : m_frameScores)
+void BowlPlayerScore::clear() {
+  for (auto *item : m_frameScores)
     item->clear();
   m_resultEffect->setEnabled(false);
   setFrameId(1);
 }
 
-QWidget*
-BowlPlayerScore::createResultWidget()
-{ // add QLabel with result score-frame....
+QWidget *BowlPlayerScore::createResultWidget() { // add QLabel with result
+                                                 // score-frame....
   m_resultLabel = new QLabel(this);
   m_resultLabel->setText("        ");
   QFont font = m_resultLabel->font();
@@ -80,9 +78,7 @@ BowlPlayerScore::createResultWidget()
 
   return frame;
 }
-int
-BowlPlayerScore::thrownCountOfPins(int pinsThrown)
-{
+int BowlPlayerScore::thrownCountOfPins(int pinsThrown) {
 
   int allowedCountOfPins = 0;
 
@@ -101,7 +97,7 @@ BowlPlayerScore::thrownCountOfPins(int pinsThrown)
       auto firstStrikeInARow = findfirstTrailingStrikeInARow(lastStrikeIndex);
 
       treatRowOfStrikes(item, firstStrikeInARow, lastStrikeIndex);
-    } else if (auto* previousItem = previousFrameScore();
+    } else if (auto *previousItem = previousFrameScore();
                previousItem && previousItem->hasSpare()) {
       previousItem->setExtra(item->cumulateThrownPins(1));
       if (item->noThrows() >= 1)
@@ -119,9 +115,7 @@ BowlPlayerScore::thrownCountOfPins(int pinsThrown)
   return allowedCountOfPins;
 }
 
-BowlFrameScore*
-BowlPlayerScore::frameScore(int index)
-{
+BowlFrameScore *BowlPlayerScore::frameScore(int index) {
   if (0 <= index && index < m_frameScores.size()) {
     return m_frameScores.at(index);
   } else {
@@ -129,18 +123,14 @@ BowlPlayerScore::frameScore(int index)
   }
 }
 
-void
-BowlPlayerScore::activateNextFrameScore()
-{
+void BowlPlayerScore::activateNextFrameScore() {
 
   activateCurrentFrame(false);
   m_currentFrameIndex++;
   activateCurrentFrame(true);
 }
 
-void
-BowlPlayerScore::updateAllFrameScores()
-{
+void BowlPlayerScore::updateAllFrameScores() {
   // update all: render and forward previous score of all
   auto prevScore = 0;
   for (int index = 0; index < m_frameScores.size(); index++) {
@@ -158,16 +148,12 @@ BowlPlayerScore::updateAllFrameScores()
   m_resultLabel->setText(QString("%1").arg(resultScore()));
 }
 
-int
-BowlPlayerScore::resultScore()
-{
+int BowlPlayerScore::resultScore() {
 
   return m_frameScores.last()->totalScore();
 }
 
-int
-BowlPlayerScore::findfirstTrailingStrikeInARow(int lastStrike)
-{
+int BowlPlayerScore::findfirstTrailingStrikeInARow(int lastStrike) {
   // iterate backwards over items that hasStrike()
   int firstStrikeInARow = 0;
 
@@ -182,11 +168,8 @@ BowlPlayerScore::findfirstTrailingStrikeInARow(int lastStrike)
   return firstStrikeInARow;
 }
 
-void
-BowlPlayerScore::treatRowOfStrikes(BowlFrameScore* currentFrame,
-                                   int firstStrikeInARow,
-                                   int lastStrike)
-{
+void BowlPlayerScore::treatRowOfStrikes(BowlFrameScore *currentFrame,
+                                        int firstStrikeInARow, int lastStrike) {
   for (int index = lastStrike; index >= firstStrikeInARow; index--) {
     auto _item2 = frameScore(index);
     if (_item2 && _item2->hasStrike()) {
@@ -210,11 +193,9 @@ BowlPlayerScore::treatRowOfStrikes(BowlFrameScore* currentFrame,
   }
 }
 
-void
-BowlPlayerScore::activateCurrentFrame(bool enable)
-{
-  auto* scoreFrame =
-    currentFrameScore() ? currentFrameScore()->widgetFrame() : nullptr;
+void BowlPlayerScore::activateCurrentFrame(bool enable) {
+  auto *scoreFrame =
+      currentFrameScore() ? currentFrameScore()->widgetFrame() : nullptr;
 
   if (scoreFrame) {
     if (enable) {
@@ -225,9 +206,7 @@ BowlPlayerScore::activateCurrentFrame(bool enable)
   }
 }
 
-void
-BowlPlayerScore::markResult(const QColor& color)
-{
+void BowlPlayerScore::markResult(const QColor &color) {
   m_resultEffect->setColor(color);
   m_resultEffect->setEnabled(true);
 }

@@ -6,6 +6,9 @@ set(CMAKE_AUTOMOC ON)
 #set(CMAKE_AUTORCC ON)
 
 add_library(libWorldBowlingScorer STATIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/loop
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/ogis/cpploop.hpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/ogis/wbscorer/bowlscorermainwindow.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/bowlscorermainwindow.cpp
 
