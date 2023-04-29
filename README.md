@@ -14,9 +14,8 @@ Scorer Appplication for Sportive Disipline "World-Bowling"
  
 ![Image  diagram](./UML/WorldBowlingScore-UML-details.png)
    
-### Openissues ###
+### Open issues ###
 
-At the momnet, the project lacks an exhausted set of UnitTests.
+- At the momnet, the project lacks of some UnitTests.
 
-A comaprison with a reference implementation has been shown some deviations.
-which have been erased.
+- A Comparison with a reference implementation has shown some deviations. These have been fixed.
